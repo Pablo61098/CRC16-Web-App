@@ -1,0 +1,107 @@
+*,
+*::before
+,*::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.space{
+    display: inline-block;
+    width:40px;
+    /* background: blue; */
+}
+
+.dividend{
+    color: orange;
+}
+
+.receiver{
+    color: red;
+}
+
+.ui{
+    width: 75%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+}
+
+.information{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.information p{
+    
+    margin: 20px 0;
+}
+
+.information h1{
+    font-size: 75px;
+    font-weight: 100;
+}
+
+.author{
+    display: flex;
+}
+
+.author p {
+    margin: 0 10px;
+}
+
+.configuration form{
+    padding: 20px 30px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.configuration form button{
+    display: block;
+    height: 45px;
+    width: 100px;
+
+}
+
+.mx{
+    margin: 20px 10px;
+    width: 50%;
+}
+
+.gx{
+    margin: 20px 10px;
+}
+
+.mx input{
+    width: 100%;
+} 
+
+
+.result{
+    height: 500px;
+    overflow-x: auto;
+    white-space: nowrap;
+    display:flex;
+}
+
+.divisor{
+    padding: 2px 5px;
+}
+
+.dividend{
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+}
+
+.receiver{
+    display: flex;
+    justify-content: space-between;
+}

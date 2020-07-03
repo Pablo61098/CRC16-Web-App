@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content=ie=edge>
+        <link rel="stylesheet" href="./stylesheets/style.css">
+        <title>CRC16</title>
+    </head>
+    <body>
+        <div class="ui">
+            <div class="information">
+                <h1>CRC16</h1>
+                <p>This application allows you to calculate the CRC16 necessary to check your receiving message accuracy</p>
+                <div class="author">
+                    <p>Pablo Solano</p>
+                    <p>Date published</p>
+                </div>
+            </div>
+            <div class="configuration">
+                <form action="/" method="POST">
+                    <div class="mx">
+                        <h3>m(x)</h3>
+                        <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                    </div>
+                    <div class="gx">
+                        <h3>g(x)</h3>
+                        <math>
+                            g(s) = x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
+                        </math>
+                    </div>
+                    <button type="submit">CALCULAR</button>
+                </form>
+            </div> 
+            <div class="result">
+                <div class="divisor">
+                    <math>
+                        !! x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
+                    </math>
+                </div>
+                <div class="process">
+                    <% if(typeof information != 'undefined') { %>
+                        <% for(let i=0; i<information.counter;i++){ %>
+                            <div class="operation">
+                                xdas
+                                <div class="dividend">
+                                    <code>
+                                        <% counter = information.remainders[i].length-1; %>
+                                        <% counter = len; %>
+                                        <% for(let j=len; j>=information.lastIndexes[i]; j--){ %>
+                                            <% try{ %>
+                                                <% if(information.remainders[i][j]==0 && j>=0){ %>
+                                                    <span class="space"></span>
+                                                <% }else if(information.remainders[i][j]==1){ %>
+                                                    
+                                                    <% if(information.lastIndexesResiduo[i] == counter){ %>
+                                                        <span class="space">x<sup><%= j %></sup></span>
+                                                    <% }else{ %>
+                                                        <span class="space">x<sup><%= j %></sup> +</span>
+                                                    <% }%>
+
+                                                <% }else{ %>
+                                                    <span class="space"></span>
+                                                <% } %>
+                                                <%- console.log("Counter: " + counter); %>
+                                                <% counter -= 1; %>
+                                            <% }catch(err){ %>
+                                                    
+                                            <% } %>
+                                        <% } %>
+                                    </code>
+                                </div>
+                                <div class="receiver">
+                                    <code>
+                                        <% if(i != information.counter-1){ %>
+                                            <% for(let j=len; j>=Math.min(...information.listaIndices[i]); j--){ %>
+                                                <% if(information.listaIndices[i].includes(j)){ %>
+                                                    <% if(information.lastIndexesResiduo[i] == counter){ %>
+                                                        <span class="space">x<sup><%= j %></sup></span>
+                                                    <% }else{ %>
+                                                        <span class="space">x<sup><%= j %></sup> +</span>
+                                                    <% }%>
+                                                <% }else{ %>
+                                                        <span class="space"></span>
+                                                <% }%>
+                                                <%- console.log("Counter: " + counter); %>
+                                                <% counter -= 1; %>
+                                                
+                                            <% } %>
+                                        <% } %>
+                                    </code>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% } %>    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
