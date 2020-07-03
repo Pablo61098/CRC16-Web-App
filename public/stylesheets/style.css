@@ -6,6 +6,20 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Martel Sans', sans-serif;
+    src: url('./public/fonts/MartelSans-Regular.ttf');
+}
+@font-face {
+    font-family: MartelSansBlack;
+    src: url('./public/fonts/MartelSans-Black.ttf');
+}
+
+body{
+    font-family: 'Martel Sans';
+}
+
+
 .space{
     display: inline-block;
     width:40px;
@@ -13,7 +27,7 @@
 }
 
 .dividend{
-    color: orange;
+    color: green;
 }
 
 .receiver{
@@ -72,6 +86,14 @@
 .mx{
     margin: 20px 10px;
     width: 50%;
+    
+    
+}
+
+.mx input{
+    height: 45px;
+    font-size: 15px;
+    font-family: 'Martel Sans';
 }
 
 .gx{
@@ -82,12 +104,19 @@
     width: 100%;
 } 
 
+.scrollable{
+    overflow: hidden;
+    border-radius:15px;
+    border: 2px solid black;
+    margin-bottom: 40px;
+}
 
 .result{
-    height: 500px;
+    height: 600px;
     overflow-x: auto;
     white-space: nowrap;
     display:flex;
+     
 }
 
 .divisor{
@@ -99,9 +128,30 @@
     border-left: 2px solid black;
     display: flex;
     justify-content: space-between;
+    padding-left: 23px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .receiver{
     display: flex;
     justify-content: space-between;
+    border-left: 2px solid black;;
+}
+
+.coeficient{
+    border-left: 2px solid black;    
+    padding-left: 5px;
+}
+
+.operation{
+    margin-left: 5px;
+    background-color: rgba(128,128,128,0.1);
+    border-radius: 15px;
+    margin-bottom: 5px;
+    padding: 10px 5px;
+}
+
+.process{
+    
 }

@@ -80,13 +80,13 @@ class CRC16 {
         let x = this.findLastOne(residuo);
         lastIndexes.push( Math.min(x, Math.min(...indices)) );
         lastIndexesResiduo.push(x);
-
+        diferencias.push(dif);
         listaIndices.push(indices);
 
         let counter=1;
         residuos.push(residuo.slice(0,this.findFirstOne(residuo)+1));
         while(dif>=0){
-            diferencias.push(dif);
+            
             for(let i=0; i<firstOneMessage+1;i++){
                 // console.log("/ " + String(i));
                 if(residuo[i] == 0 && indices.includes(i)==false){
@@ -114,12 +114,13 @@ class CRC16 {
             let x = this.findLastOne(residuo);
             lastIndexes.push( Math.min(x, Math.min(...indices)) );
             lastIndexesResiduo.push(x);
+            diferencias.push(dif);
             counter += 1;
         }
         
         // console.log(diferencias);
         // console.log(counter);
-        return {"remainders": residuos, "listaIndices":listaIndices, "counter":counter, "lastIndexes": lastIndexes.slice(0,counter), "lastIndexesResiduo": lastIndexesResiduo};
+        return {"remainders": residuos, "listaIndices":listaIndices, "counter":counter, "lastIndexes": lastIndexes.slice(0,counter), "lastIndexesResiduo": lastIndexesResiduo, "diferencias": diferencias};
     }
 
     findFirstOne(array){
