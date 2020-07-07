@@ -86,21 +86,37 @@ body{
 .mx{
     margin: 20px 10px;
     width: 50%;
-    
-    
-}
-
-.mx input{
-    height: 45px;
-    font-size: 15px;
-    font-family: 'Martel Sans';
 }
 
 .gx{
     margin: 20px 10px;
 }
 
+.tx{
+    margin: 20px 10px;
+    width: 50%;
+}
+
+.tx textarea{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 10px;
+    height: 100px;
+    min-height: 50px;
+    max-height: 300px;
+}
+
 .mx input{
+    height: 45px;
+    font-size: 15px;
+    font-family: 'Martel Sans';
+    width: 100%;
+} 
+
+.tx input{
+    height: 45px;
+    font-size: 15px;
+    font-family: 'Martel Sans';
     width: 100%;
 } 
 
@@ -154,4 +170,65 @@ body{
 
 .process{
     
+}
+
+.tab-header{
+    display:inline-block;
+    border-radius: 50px;
+    box-shadow: 10px 5px 10px rgba(52, 58, 64, 1);
+    transition: background-color 2s;
+    height: 49px;
+    
+}
+
+
+.tab-link{
+    background-color:transparent;
+    border: none;
+    height: 45px;
+    padding: 0 20px;
+    margin: 0 0;
+    border-radius: 50px;
+    outline: none;
+    position:relative;
+    top: 0px;
+}
+
+.tab-link.active{
+    background-color: #FF6100;
+    color: white;
+    border: none;
+    height: 45px;
+    padding: 0 20px;
+    margin: 0 0;
+    border-radius: 50px;
+    transition: background-color 1s;
+    box-shadow: 0px 4px rgba(225, 63, 1, 1);
+    transition: box-shadow 0s;
+}
+
+.tab-link:hover{
+    top:1px;
+    box-shadow: 0px 3px rgba(193, 193, 193, 1);
+}
+
+.tab-link:active{
+    top:2px;
+    box-shadow: 0px 2px rgba(193, 193, 193, 1);
+}
+
+.tab-link.active:hover{
+    background-color: rgba(255, 97, 0, 0.8);
+    top:1px;
+    box-shadow: 0px 3px rgba(225, 63, 1, 1);
+}
+
+.tab-link.active:active{
+    background-color: rgba(255, 97, 0, 0.8);
+    top:2px;
+    box-shadow: 0px 2px rgba(225, 63, 1, 1);
+}
+
+.tab-header:hover{
+    background-color: rgba(193, 193, 193, 0.5);
 }

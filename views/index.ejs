@@ -18,24 +18,66 @@
                     <p>Date published</p>
                 </div>
             </div>
+
             <div class="configuration">
-                <form action="/" method="POST">
-                    <div class="mx">
-                        <h3>m(x)</h3>
-                        <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                <div class="tab-header">
+                    <% if(type == 'calculate'){ %>
+                        <% console.log("Calculate") %>
+                        <a href="/calculate"><button class="tab-link active">Calculate CRC</button></a>
+                        <a href="/check"><button class="tab-link">Check</button></a>
+                    <% }else if(type == 'check'){ %>
+                        <% console.log("Cheeeeeeck") %>
+                        <a href="/calculate"><button class="tab-link">Calculate CRC</button></a>
+                        <a href="/check"><button class="tab-link active">Check</button></a>
+                    <% } %>                    
+                </div>
+                <% if(type == 'calculate'){ %>
+                    <div class="tabcontent" id="calculate">
+                        <form action="/calculate" method="POST">
+                            <div class="mx">
+                                <h3>m(x) -> Mensaje a enviar</h3>
+                                <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                            </div>
+                            <div class="gx">
+                                <h3>g(x) -> CRC Polynomial</h3>
+                                <math>
+                                    g(s) = x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
+                                </math>
+                            </div>
+                            <button type="submit" id="hola">CALCULAR</button>
+                        </form>
                     </div>
-                    <div class="gx">
-                        <h3>g(x)</h3>
-                        <math>
-                            g(s) = x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
-                        </math>
+                <% } %>
+                <% if(type == 'check'){ %>
+                    <div class="tabcontent" id="check">
+                        <form action="/check" method="POST">
+                            <div class="tx">
+                                <h3>t(x) -> Mensaje transmitido</h3>
+                                <textarea name="message" id="mensaje-tx" pattern="[0-1]{6,25} cols="30" rows="10" placeholder="Ingrese un mensaje..." required></textarea>
+                            </div>
+                            <div class="gx">
+                                <h3>g(x) -> CRC Polynomial</h3>
+                                <math>
+                                    g(s) = x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
+                                </math>
+                            </div>
+                            <button type="submit" id="hola">CHECK</button>
+                        </form>
+                        <div>
+                            <div>
+                                <label for="">Residuo:</label>
+                                <label for="" id="rx"></label>
+                            </div>
+                            <div>
+                                <label for="">Mensaje:</label>
+                                <label for="" id="tx-transformado"></label>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit">CALCULAR</button>
-                </form>
+                <% } %>
             </div> 
-            <div class="scrollable">
-                
-                <% if(typeof information != 'undefined') { %>
+            <% if(result == true && type == 'calculate') { %>
+                <div class="scrollable">
                     <div class="result">
                         <div class="divisor">
                             <math>
@@ -105,8 +147,12 @@
                             <% } %>
                         </div>
                     </div>
-                <% } %>      
-            </div>
+                </div>
+            <% } %>  
+            <% if(result == true && type == 'check') { %>
+                <% console.log(message); %>
+            <% } %>                
         </div>
+        <script type="text/javascript" src="./javascript/control.js"></script>
     </body>
 </html>
