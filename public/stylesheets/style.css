@@ -19,6 +19,9 @@ body{
     font-family: 'Martel Sans';
 }
 
+input{
+    outline: none;
+}
 
 .space{
     display: inline-block;
@@ -40,6 +43,7 @@ body{
     justify-content: center;
     flex-direction: column;
     margin: auto;
+    
 }
 
 .information{
@@ -48,6 +52,15 @@ body{
     flex-direction: column;
     padding: 10px 20px;
     font-size: 18px;
+    border-left: 1px solid rgba(0,0,0, 0.2);
+    border-right: 1px solid rgba(0,0,0, 0.2);
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#authorName{
+    padding-right: 30px;
+    border-right: 1px solid rgba(0,0,0,0.5);
 }
 
 .information p{
@@ -62,10 +75,23 @@ body{
 
 .author{
     display: flex;
+    font-size: 15px;
 }
 
 .author p {
     margin: 0 10px;
+}
+
+.configuration, .summary{
+    /* background-color; */
+    box-shadow: 4px 10px 20px rgba(40, 47, 54, 1),
+                1px 0px 10px rgba(40, 47, 54, 1);
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.summary * {
+    margin:  15px 15px 15px 15px; 
 }
 
 .configuration form{
@@ -76,12 +102,32 @@ body{
     flex-wrap: wrap;
 }
 
-.configuration form button{
+.send{
     display: block;
     height: 45px;
     width: 100px;
-
+    background: rgba(255, 97, 0, 0.9);
+    color: white;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    border-radius: 8px;
 }
+
+.send:hover{
+    
+    background: rgba(255, 97, 0, 0.8);
+    border: none;
+    outline: none;
+}
+
+.send:active{
+    
+    background: rgba(255, 97, 0, 1);
+    border: none;
+    outline: none;
+}
+
 
 .mx{
     margin: 20px 10px;
@@ -90,6 +136,7 @@ body{
 
 .gx{
     margin: 20px 10px;
+    width: 30%;
 }
 
 .tx{
@@ -104,6 +151,9 @@ body{
     height: 100px;
     min-height: 50px;
     max-height: 300px;
+    border: 2px solid black;
+    border-radius: 8px;
+    outline: none;
 }
 
 .mx input{
@@ -111,6 +161,8 @@ body{
     font-size: 15px;
     font-family: 'Martel Sans';
     width: 100%;
+    border-radius: 15px;
+    border: 2px solid rgb(94, 92, 92);
 } 
 
 .tx input{
@@ -125,6 +177,9 @@ body{
     border-radius:15px;
     border: 2px solid black;
     margin-bottom: 40px;
+    box-shadow: 4px 10px 20px rgba(40, 47, 54, 1),
+                1px 0px 10px rgba(40, 47, 54, 1);
+
 }
 
 .result{
@@ -168,17 +223,13 @@ body{
     padding: 10px 5px;
 }
 
-.process{
-    
-}
-
 .tab-header{
+    margin: 20px 0 0 20px;
     display:inline-block;
     border-radius: 50px;
     box-shadow: 10px 5px 10px rgba(52, 58, 64, 1);
     transition: background-color 2s;
     height: 49px;
-    
 }
 
 
@@ -231,4 +282,276 @@ body{
 
 .tab-header:hover{
     background-color: rgba(193, 193, 193, 0.5);
+}
+
+.calculable {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.calculated{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+
+.validity{
+    width: 20%;
+}
+
+.button-send{
+    WIDTH: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.residuo , .mensaje{
+    width: 100%;
+}
+
+
+.calculable label{
+    font-size: 25px;
+    font-weight: 600;
+    margin-right: 10px;
+}
+
+.calculable input{
+    font-size: 18px;
+    outline: none;
+    width: 100%;
+    border-radius: 15px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.tabcontent form {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.success-checkmark {
+    width: 125px;
+    height: 125px;
+    margin:  0 auto;
+    /* border: 2px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.check-icon{
+    position: relative;
+    border: 4px solid rgba(0, 128, 0, 0);
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: transparent;
+    /* overflow: hidden; */
+    justify-content: center;
+}
+
+.icon-circle{
+    width: 100%;
+    height: 100%;            
+    position: absolute;
+    
+    /* top: -3px;
+    left: -3px; */
+    border-radius: 50%;
+    border: 5px solid rgba(0, 128, 0, 1);
+    animation: rotate-side 0.6s ease-in-out;
+    background-color: transparent;
+}
+
+.inside{
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.line-tip{
+    position: relative;
+    width: 5px;
+    height: 20px;
+    background: green;
+    transform: rotate(-45deg);
+    left: -6px;
+    top: 49px;
+    animation: left-appear 0.4s;
+}
+
+.line-long{
+    position: relative;
+    width: 5px;
+    height: 60px;
+    background: green;
+    transform: rotate(45deg);
+    top: 14px;
+    left: 15px;
+    animation: right-appear 0.5s;
+    
+}
+
+@keyframes rotate-side{
+    0%{
+        transform: rotate(-90deg);
+        border: 5px solid rgba(0, 128, 0, 0.2);
+        border-right: 5px solid rgba(0, 128, 0, 0.2);
+    }
+    60%{
+        border: 5px solid rgba(0, 128, 0, 0.2);
+        border-right: 5px solid rgba(0, 128, 0, 1);
+    }
+    90%{
+        
+    }
+    100%{
+        
+        transform: rotate(-400deg);
+        border-right: 5px solid rgba(0, 128, 0, 1);   
+    }
+
+}
+
+@keyframes right-appear{
+    0%{
+        width: 0;
+    }
+
+    50%{
+
+        width: 6px;
+    }
+    85%{   
+        width: 4px;
+    }
+    100%{
+        width: 5px;
+    }
+
+}
+
+@keyframes left-appear{
+    0%{
+        width: 0;
+        left: -50px;
+        top: -25px;
+    }
+
+    25%{
+        width: 6px;
+    }
+    50%{
+    }
+    75%{
+        width: 4px;
+    }
+    100%{
+        left: -6px;
+        top: 49px;
+    }
+}
+
+
+.denied{
+    display:flex;
+    justify-content: center;
+ }
+ 
+ .left-side{
+   border-radius: 15px;
+   position: relative;
+ /*   border: 2px solid black; */
+   width: 20px;
+   height: 100px;
+   background: rgba(231, 26, 35, 1);
+   transform: rotate(-45deg);
+   left: 10px;
+   animation: appear 0.5s ease-in;
+   box-shadow: 5px 5px 5px rgba(52, 58, 64, 1);
+ }
+ .right-side{
+   border-radius: 15px;
+   position: relative;
+ /*   border: 2px solid black; */
+   width: 20px;
+   height: 100px;
+   background: rgba(231, 26, 35, 1);
+   transform: rotate(45deg);
+   left: -10px;
+   animation: appear 0.5s ease-in;
+   box-shadow: 5px -5px 5px rgba(52, 58, 64, 1);
+ }
+ 
+ @keyframes appear{
+   0%{
+     width: 1px;
+ /*     height: 10px; */
+   }
+   40%{
+     width: 30px;
+   }
+   80%{
+     width: 15px;
+   }
+   100%{
+     width: 20px;
+   }
+   
+ }
+
+ @media (min-width: 0px) {
+   .calculated{
+       width: 100%;
+   }
+
+}
+@media (min-width: 576px) {
+    .calculated{
+        width: 80%;
+    }
+}
+
+.last {
+    color: red;
+}
+
+.summary{
+    text-align: end;
+}
+
+.summary h3{
+    margin-right: 25px;
+}
+
+.digitsBinary{
+    margin-right: 30px;
+    font-weight: 900;
+}
+
+#remainderBinary{
+    color: green;
+}
+
+.separator{
+    margin-left: auto;
+    height: 4px;
+    width: 90%;
+    background-color: black;
+}
+
+a:visited { text-decoration: none; color:black; }
+a:hover { text-decoration: none; color:blue; }
+a:hover, a:active { text-decoration: none; color:black }
+
+img{
+    border-radius: 50%;
 }

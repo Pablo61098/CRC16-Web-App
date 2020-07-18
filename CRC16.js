@@ -11,7 +11,7 @@ class CRC16 {
         return this.message;
     }
 
-    getBinaryMessage(){
+    setBinaryMessage(){
         let binaryMessage='';
         for(let i=0; i< this.message.length ; i++){
             let binaryLetter = this.message[i].charCodeAt().toString(2); 
@@ -50,9 +50,15 @@ class CRC16 {
         return array;
     }
 
-    getRemainder(){
-        this.getBinaryMessage();
-        this.binaryMessageArray = this.getBinaryArray(this.binaryMessage);
+    getRemainder(calculate){
+
+        if(calculate){
+            this.setBinaryMessage();
+            this.binaryMessageArray = this.getBinaryArray(this.binaryMessage);
+        }else{
+            this.binaryMessageArray = this.getBinaryArray(this.binaryMessage);
+        }
+        
         this.binaryDivisorArray = this.getBinaryArray(this.binaryDivisor);
         
         let residuo = Object.assign([], this.binaryMessageArray);
@@ -101,6 +107,7 @@ class CRC16 {
                     console.log("No esta entrando a nada");
                 }
             }
+            
             residuos.push(residuo.slice(0,this.findFirstOne(residuo)+1));
             console.log("\n#" + residuo);
             firstOneMessage = this.findFirstOne(residuo);
@@ -120,7 +127,12 @@ class CRC16 {
         
         // console.log(diferencias);
         // console.log(counter);
-        return {"remainders": residuos, "listaIndices":listaIndices, "counter":counter, "lastIndexes": lastIndexes.slice(0,counter), "lastIndexesResiduo": lastIndexesResiduo, "diferencias": diferencias};
+        if(calculate){
+            return {"remainders": residuos, "listaIndices":listaIndices, "counter":counter, "lastIndexes": lastIndexes.slice(0,counter), "lastIndexesResiduo": lastIndexesResiduo, "diferencias": diferencias, "binaryMessage": this.binaryMessage };
+        }else{
+            return {"remainder": residuos[residuos.length-1]};
+        }
+        
     }
 
     findFirstOne(array){
@@ -129,7 +141,7 @@ class CRC16 {
                 return (i);
             }
         }
-        return undefined;
+        return 0;
     }
 
     findLastOne(array){
@@ -139,7 +151,7 @@ class CRC16 {
                 return (i);
             }
         }
-        return undefined;
+        return 0;
     }
 
     indexesOfOnesInDivisor(divisor, dif){
@@ -162,7 +174,7 @@ module.exports = CRC16;
 
 // mensaje = new CRC16("hola como estas soy yo tu pana del alma mijin que diceeees peees ademas que me puedes decir acerca del numero de caracteres que estoy ponie!");
 // console.log(mensaje.message);
-// console.log(mensaje.getBinaryMessage());
+// console.log(mensaje.setBinaryMessage());
 // console.log(mensaje.binaryMessage);
 // mensaje.getRemainder();
 

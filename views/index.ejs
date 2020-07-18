@@ -14,8 +14,9 @@
                 <h1>CRC16</h1>
                 <p>This application allows you to calculate the CRC16 necessary to check your receiving message accuracy</p>
                 <div class="author">
-                    <p>Pablo Solano</p>
-                    <p>Date published</p>
+                    <a  href="https://github.com/Pablo61098"><img src="./images/yomero.jpg" width="30px" height="30px" alt=""></a>
+                    <a  href="https://github.com/Pablo61098"><p id="authorName">Pablo Solano</p></a>
+                    <p>Date published: 09/15/20</p>
                 </div>
             </div>
 
@@ -36,7 +37,12 @@
                         <form action="/calculate" method="POST">
                             <div class="mx">
                                 <h3>m(x) -> Mensaje a enviar</h3>
-                                <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                                <% if(result){ %>
+                                    
+                                    <input name="message" id="" value="<%= mensajeEnviar %>" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                                <% }else{ %>
+                                    <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                                <% } %>
                             </div>
                             <div class="gx">
                                 <h3>g(x) -> CRC Polynomial</h3>
@@ -44,7 +50,9 @@
                                     g(s) = x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
                                 </math>
                             </div>
-                            <button type="submit" id="hola">CALCULAR</button>
+                            
+                            <button  type="submit" class="send">CALCULAR</button>
+                            
                         </form>
                     </div>
                 <% } %>
@@ -53,7 +61,7 @@
                         <form action="/check" method="POST">
                             <div class="tx">
                                 <h3>t(x) -> Mensaje transmitido</h3>
-                                <textarea name="message" id="mensaje-tx" pattern="[0-1]{6,25} cols="30" rows="10" placeholder="Ingrese un mensaje..." required></textarea>
+                                <textarea name="message" id="mensaje-tx" pattern="[0-1]{6,25} cols="30" rows="10" placeholder="Ingrese un mensaje..." required><% if(result){ %><%= binaryMessage %><% } %></textarea>
                             </div>
                             <div class="gx">
                                 <h3>g(x) -> CRC Polynomial</h3>
@@ -61,22 +69,96 @@
                                     g(s) = x<sup>16</sup> + x<sup>12</sup> + x<sup>12</sup> + x<sup>5</sup> + 1
                                 </math>
                             </div>
-                            <button type="submit" id="hola">CHECK</button>
+                            <div class="calculable">
+                                <div class="calculated">
+                                    <div class="residuo">
+                                        <label for="">Residuo:</label>
+                                            <% if(result){ %>
+                                                <input placeholder="The remainder of your t(x) will be shown here..." value="<%= remainder %>" name="remainder" id="rx" type="text" readonly>
+                                            <% }else{ %>
+                                                <input placeholder="The remainder of your t(x) will be shown here..." name="remainder" id="rx" type="text" readonly>
+                                            <% } %>
+                                        </input>
+                                    </div>
+                                    <div class="mensaje">
+                                        <label for="">Mensaje:</label>
+                                            <% if(result){ %>
+                                                <input placeholder="The message of your t(x) will be shown here..." name="textTransformed" id="tx-transformado" value="<%= stringMessage %>" type="text">
+                                            <% }else{ %>
+                                                <input placeholder="The message of your t(x) will be shown here..." name="textTransformed" id="tx-transformado" type="text">
+                                            <% }%>
+                                        </input>
+                                    </div>
+                                    <div class="button-send">
+                                        <button type="submit" class="send">CHECK</button>
+                                    </div>
+                                </div>
+                                <% if(result == true && type == 'check') { %>
+                                    <div class="validity">
+                                        <% if(validity){ %>
+                                            <div class = "success-checkmark">
+                                                <div class="check-icon">
+                                                    <div class="icon-circle">
+                                                    </div>
+                                                    <div class="inside">
+                                                        <span class="icon-line line-tip"></span>
+                                                        <span class="icon-line line-long"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <% }else{ %>
+                                            <div class="denied">
+                                                <div class="left-side">
+                                                </div>
+                                                <div class="right-side">
+                                                </div>
+                                            </div>
+                                        <% } %>
+                                    </div>
+                                <% } %>
+                            </div>
                         </form>
-                        <div>
-                            <div>
-                                <label for="">Residuo:</label>
-                                <label for="" id="rx"></label>
-                            </div>
-                            <div>
-                                <label for="">Mensaje:</label>
-                                <label for="" id="tx-transformado"></label>
-                            </div>
-                        </div>
+                       
                     </div>
                 <% } %>
             </div> 
+
             <% if(result == true && type == 'calculate') { %>
+                <div class="summary">
+                    <h3 for="">Message in binary: </h3>
+                    
+                    <% let digitsBinary = ""; %>
+                    <% let last = ""; %>
+                    <% let flag =true; %>
+                    <% for(let i=0; i<information.binaryMessage.length; i++){ %>
+                        <% if( i < information.binaryMessage.length - CRCsize){ %>
+                            <% digitsBinary += information.binaryMessage[i] + " "; %>
+                        <% }else{ %>
+                            <% last += information.binaryMessage[i] + " "; %>
+                        <% } %>
+                    <% } %>
+                    <span class="digitsBinary">-> <%= digitsBinary %></span>
+                    <br/>
+                    <span class="last"><%= last %> <-</span>
+                    <h3 for="">Remainder: </h3>
+                    
+                    <% let remainder = "";%>
+                        <% for(let i= CRCsize; i>0; i-- ){ %>
+                            <% if(information.remainders[information.remainders.length - 1][i-1] == 1 ){ %>
+                                <% remainder+="1 "; %>
+                            <% } else { %>
+                                <% remainder+="0 "; %>
+                            <% } %>
+                        <% } %>
+                    <span id="remainderBinary">-> <%= remainder %> <-</span>
+                    <br/>
+                    <div class="separator"></div>
+                    <h3 for="">Transmitted Message: </h3>
+                    <span class="digitsBinary">-> <%= digitsBinary %></span>
+                    <br/>
+                    <span id="remainderBinary"><%= remainder %><-</span>
+                </div>
+                
                 <div class="scrollable">
                     <div class="result">
                         <div class="divisor">
@@ -149,10 +231,9 @@
                     </div>
                 </div>
             <% } %>  
-            <% if(result == true && type == 'check') { %>
-                <% console.log(message); %>
-            <% } %>                
         </div>
+
+
         <script type="text/javascript" src="./javascript/control.js"></script>
     </body>
 </html>
