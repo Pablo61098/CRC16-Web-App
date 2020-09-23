@@ -21,16 +21,16 @@ function turnBinaryToString(binaryString){
             counter2 += 1;
             counter -= 1;
         }
-        console.log("*: " + byte);
+        // console.log("*: " + byte);
         flag = 0;
     }
 
     if(flag==0){
-        console.log("*: " + byte);
+        // console.log("*: " + byte);
         message =  String.fromCharCode(parseInt(byte,2)) + message;
     }
 
-    console.log("**: " + message);
+    // console.log("**: " + message);
     return [message,remainder];
 }
 
@@ -71,18 +71,18 @@ function init(){
         // if(true){
             textarea = document.getElementById("mensaje-tx");
             if(!e.repeat){
-                console.log(`Key "${e.key}" pressed  [event: keydown]`);
+                // console.log(`Key "${e.key}" pressed  [event: keydown]`);
                 // labelBinaryTransformed.innerHTML = turnBinaryToString(textarea.value);
             }else{
-                console.log(`Key "${e.key}" repeating  [event: keydown]`);
+                // console.log(`Key "${e.key}" repeating  [event: keydown]`);
                 // labelBinaryTransformed.innerHTML = turnBinaryToString(textarea.value);
             }
         }else if(e.key == 'Control'){
             // if(e.keyCode == 'v'){
-            //     console.log("Que mass ve");
+                // console.log("Que mass ve");
             // }
             ctrlKey = true;
-            console.log("pprrrr");
+            // console.log("pprrrr");
         }else{
             e.preventDefault();
         }
@@ -90,7 +90,7 @@ function init(){
     });
     // textarea.addEventListener('keydown', (event) => {
     //     if(){
-    //         console.log("Que mass ve");
+            // console.log("Que mass ve");
     //     }
     // });
     textarea.addEventListener('keyup', (e) => {
@@ -100,7 +100,7 @@ function init(){
             if(mensaje[i] != '1' && mensaje[i] != '0' && mensaje[i] != ' ' && mensaje[i] != '\n'){
 
                 textarea.value = '';
-                console.log(mensaje[i]);
+                // console.log(mensaje[i]);
                 // console.log(mensaje);
             }
         }
@@ -113,7 +113,7 @@ function init(){
         remainderLabel.value = calculated[1];
         if(e.key == 'Control'){
             ctrlKey = false;
-            console.log("heyyyyyy");
+            // console.log("heyyyyyy");
         }
     });
 
