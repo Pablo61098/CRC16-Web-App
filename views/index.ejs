@@ -22,7 +22,7 @@
                     <p>Date published: 09/15/20</p>
                 </div>
             </div>
-
+            
             <div class="configuration">
                 <div class="tab-header">
                     <% if(type == 'calculate'){ %>
@@ -43,7 +43,7 @@
                                 <% if(result){ %>
                                     <input name="message" id="" value="<%= mensajeEnviar %>" cols="30" rows="10" placeholder="Ingrese un mensaje..." maxlength="1020" required></input>
                                 <% }else{ %>
-                                    <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." required></input>
+                                    <input name="message" id="" cols="30" rows="10" placeholder="Ingrese un mensaje..." maxlength="1020" required></input>
                                 <% } %>
                             </div>
                             <div class="gx">
@@ -124,6 +124,12 @@
                     </div>
                 <% } %>
             </div> 
+
+            <% if( typeof(messageTooLong) !== 'undefined'){ %>
+                <div class='messageTooLong'>
+                    <span>Maximum message length reached</span>
+                </div>
+            <% } %>
 
             <% if(result == true && type == 'calculate') { %>
                 <div class="summary">

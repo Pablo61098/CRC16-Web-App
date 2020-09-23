@@ -82,6 +82,15 @@ input{
     margin: 0 10px;
 }
 
+.messageTooLong{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    color:white;
+    border-radius: 15px;
+    background: rgb(218, 38, 38);
+}
+
 .configuration, .summary{
     /* background-color; */
     box-shadow: 4px 10px 20px rgba(40, 47, 54, 1),

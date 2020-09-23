@@ -22,7 +22,7 @@ app.get("/calculate", function(req, res){
 
 app.get("/check", function(req, res){
     // console.log("Haciendo un get");
-    res.render("index", {type: 'check',result: false});
+    res.render("index", {type: 'check',result: false, messageTooLong: false});
 });
 
 
@@ -40,7 +40,7 @@ app.post("/calculate", function(req, res){
         }
     }
 
-    return res.render("index", {type: 'calculate', result: false});
+    return res.render("index", {type: 'calculate', result: false, messageTooLong: true});
     // console.log(information);
     // console.log(req.params.type);
     // console.log("Haciendo un post");
