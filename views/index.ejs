@@ -125,7 +125,7 @@
                 <% } %>
             </div> 
 
-            <% if( typeof(messageTooLong) !== 'undefined'){ %>
+            <% if( typeof(messageTooLong) !== 'undefined' && result == true && type == 'calculate'){ %>
                 <div class='messageTooLong'>
                     <span>Maximum message length reached</span>
                 </div>
