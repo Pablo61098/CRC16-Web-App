@@ -32,11 +32,15 @@ app.post("/calculate", function(req, res){
     message = new CRC16(req.body.message);
     information = message.getRemainder(true);
 
-    if(req.body.message.length > 50){
-        res.render("index", {type: 'calculate',result: true, information: information, len: message.binaryMessageArray.length, CRCsize: 16, mensajeEnviar: req.body.message, showProcess: false});
-    }else{
-        res.render("index", {type: 'calculate',result: true, information: information, len: message.binaryMessageArray.length, CRCsize: 16, mensajeEnviar: req.body.message, showProcess: true});
+    if(req.body.message.length < 1021){
+        if(req.body.message.length > 50){
+            return res.render("index", {type: 'calculate',result: true, information: information, len: message.binaryMessageArray.length, CRCsize: 16, mensajeEnviar: req.body.message, showProcess: false});
+        }else{
+            return res.render("index", {type: 'calculate',result: true, information: information, len: message.binaryMessageArray.length, CRCsize: 16, mensajeEnviar: req.body.message, showProcess: true});
+        }
     }
+
+    return res.render("index", {type: 'calculate', result: false});
     // console.log(information);
     // console.log(req.params.type);
     // console.log("Haciendo un post");
