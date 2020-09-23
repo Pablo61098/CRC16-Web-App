@@ -25,6 +25,10 @@ app.get("/check", function(req, res){
     res.render("index", {type: 'check',result: false, messageTooLong: false});
 });
 
+app.get("*", function(req, res){
+    return res.redirect('/');
+});
+
 
 
 app.post("/calculate", function(req, res){
