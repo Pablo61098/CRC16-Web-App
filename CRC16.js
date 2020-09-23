@@ -15,9 +15,9 @@ class CRC16 {
         let binaryMessage='';
         for(let i=0; i< this.message.length ; i++){
             let binaryLetter = this.message[i].charCodeAt().toString(2); 
-            console.log(binaryLetter.length);
+            // console.log(binaryLetter.length);
             if(binaryLetter.length < 8){
-                console.log("heyyy");
+                // console.log("heyyy");
                 let dif = 8 - binaryLetter.length;
                 for(let i=0; i< dif; i++){
                     binaryLetter = '0'+binaryLetter;
@@ -44,9 +44,9 @@ class CRC16 {
                 array.push(0);
             }
         }
-        console.log("Number Ones: " + counterOnes);
-        console.log("Number Ones: " + counterZeros);
-        console.log("Array: " + array);
+        // console.log("Number Ones: " + counterOnes);
+        // console.log("Number Ones: " + counterZeros);
+        // console.log("Array: " + array);
         return array;
     }
 
@@ -62,12 +62,12 @@ class CRC16 {
         this.binaryDivisorArray = this.getBinaryArray(this.binaryDivisor);
         
         let residuo = Object.assign([], this.binaryMessageArray);
-        console.log("Residuo: " + residuo);
+        // console.log("Residuo: " + residuo);
         let firstOneDivisor = this.findFirstOne(this.binaryDivisorArray);
         let firstOneMessage = this.findFirstOne(residuo);
 
-        console.log(firstOneDivisor);
-        console.log(firstOneMessage);
+        // console.log(firstOneDivisor);
+        // console.log(firstOneMessage);
 
         
         let dif = firstOneMessage - firstOneDivisor; 
@@ -104,19 +104,19 @@ class CRC16 {
                 }else if(residuo[i] == 1 && indices.includes(i)==true){
                     residuo[i] = 0;
                 }else{
-                    console.log("No esta entrando a nada");
+                    // console.log("No esta entrando a nada");
                 }
             }
             
             residuos.push(residuo.slice(0,this.findFirstOne(residuo)+1));
-            console.log("\n#" + residuo);
+            // console.log("\n#" + residuo);
             firstOneMessage = this.findFirstOne(residuo);
             dif = firstOneMessage - firstOneDivisor;
             indices = this.indexesOfOnesInDivisor(this.binaryDivisorArray, dif);
-            console.log("##" + firstOneDivisor);
-            console.log("###" + firstOneMessage);
-            console.log("####" + indices);
-            console.log("#####" + dif);
+            // console.log("##" + firstOneDivisor);
+            // console.log("###" + firstOneMessage);
+            // console.log("####" + indices);
+            // console.log("#####" + dif);
             listaIndices.push(indices);
             let x = this.findLastOne(residuo);
             lastIndexes.push( Math.min(x, Math.min(...indices)) );
@@ -145,7 +145,7 @@ class CRC16 {
     }
 
     findLastOne(array){
-        console.log("**" + array);
+        // console.log("**" + array);
         for(let i=0; i<array.length; i++){
             if(array[i] == 1){
                 return (i);
