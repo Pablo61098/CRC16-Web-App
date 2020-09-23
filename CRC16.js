@@ -130,7 +130,7 @@ class CRC16 {
         if(calculate){
             return {"remainders": residuos, "listaIndices":listaIndices, "counter":counter, "lastIndexes": lastIndexes.slice(0,counter), "lastIndexesResiduo": lastIndexesResiduo, "diferencias": diferencias, "binaryMessage": this.binaryMessage };
         }else{
-            return {"remainder": residuos[residuos.length-1]};
+            return {"remainder": residuos[residuos.length-1], "remainders": residuos, "binaryMessage": this.binaryMessage};
         }
         
     }

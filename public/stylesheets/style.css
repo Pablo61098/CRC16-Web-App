@@ -182,6 +182,10 @@ input{
 
 }
 
+.process-note{
+    margin-bottom: 30px;
+}
+
 .result{
     height: 600px;
     overflow-x: auto;
